@@ -195,7 +195,10 @@ function initWeChatModal(p) {
     };
   }
 
-  btn.addEventListener('click', () => overlay.classList.add('open'));
+  /* Both hero button and contact section button open the same modal */
+  [btn, document.getElementById('heroWechat')].forEach(el => {
+    if (el) el.addEventListener('click', () => overlay.classList.add('open'));
+  });
 
   [closeEl, overlay].forEach(el => {
     if (!el) return;
@@ -255,4 +258,130 @@ function initScrollReveal() {
 function setEl(id, text) {
   const el = document.getElementById(id);
   if (el) el.textContent = text;
+}
+
+/* ── Hero Background: Organic Wave Canvas ─────────────────── */
+function initHeroBg() {
+  const canvas = document.querySelector('.hero__bg-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  /* Accent color components (warm brown #8B7355) */
+  const R = 139, G = 115, B = 85;
+
+  /* Three wave layers with distinct speeds, amplitudes, frequencies */
+  const layers = [
+    { speed: 0.00018, amp: 0.22, freq: 1.4,  phase: 0,    opacity: 0.07 },
+    { speed: 0.00011, amp: 0.16, freq: 2.1,  phase: 2.1,  opacity: 0.05 },
+    { speed: 0.00025, amp: 0.10, freq: 0.85, phase: 4.5,  opacity: 0.04 },
+  ];
+
+  let W, H, dpr;
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    W = rect.width;
+    H = rect.height;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  /* Draw one organic blob-wave layer */
+  function drawLayer(t, layer, waveY) {
+    const { speed, amp, freq, phase, opacity } = layer;
+    const N = 80; /* control-point resolution */
+    const time = t * speed;
+
+    ctx.beginPath();
+
+    for (let i = 0; i <= N; i++) {
+      const x = (i / N) * W;
+      /* Compose two sine waves per layer for organic feel */
+      const y = waveY
+        + Math.sin(i / N * Math.PI * 2 * freq + time + phase) * H * amp
+        + Math.sin(i / N * Math.PI * 2 * freq * 1.7 + time * 1.3 + phase + 1) * H * amp * 0.4;
+
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+
+    /* Close shape to bottom */
+    ctx.lineTo(W, H);
+    ctx.lineTo(0, H);
+    ctx.closePath();
+
+    ctx.fillStyle = `rgba(${R},${G},${B},${opacity})`;
+    ctx.fill();
+  }
+
+  /* Smoothed bezier version of the wave for a softer look */
+  function drawLayerSmooth(t, layer, waveY) {
+    const { speed, amp, freq, phase, opacity } = layer;
+    const N = 12;
+    const time = t * speed;
+
+    const pts = [];
+    for (let i = 0; i <= N; i++) {
+      const x = (i / N) * W;
+      const y = waveY
+        + Math.sin(i / N * Math.PI * 2 * freq + time + phase) * H * amp
+        + Math.sin(i / N * Math.PI * 2 * freq * 1.61 + time * 1.4 + phase + 0.8) * H * amp * 0.45
+        + Math.sin(i / N * Math.PI * 2 * freq * 0.5  + time * 0.7 + phase + 2.2) * H * amp * 0.3;
+      pts.push({ x, y });
+    }
+
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+
+    for (let i = 1; i < pts.length - 1; i++) {
+      const cpx = (pts[i].x + pts[i + 1].x) / 2;
+      const cpy = (pts[i].y + pts[i + 1].y) / 2;
+      ctx.quadraticCurveTo(pts[i].x, pts[i].y, cpx, cpy);
+    }
+    const last = pts[pts.length - 1];
+    ctx.lineTo(last.x, last.y);
+    ctx.lineTo(W, H);
+    ctx.lineTo(0, H);
+    ctx.closePath();
+
+    ctx.fillStyle = `rgba(${R},${G},${B},${opacity})`;
+    ctx.fill();
+  }
+
+  let raf;
+  function tick(t) {
+    ctx.clearRect(0, 0, W, H);
+
+    /* Layer base Y positions: upper-mid, mid, lower */
+    const yBases = [H * 0.52, H * 0.62, H * 0.72];
+    layers.forEach((layer, i) => drawLayerSmooth(t, layer, yBases[i]));
+
+    raf = requestAnimationFrame(tick);
+  }
+
+  /* Pause when hero is not visible (performance) */
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (!raf) raf = requestAnimationFrame(tick);
+      } else {
+        cancelAnimationFrame(raf);
+        raf = null;
+      }
+    });
+    io.observe(hero);
+  } else {
+    raf = requestAnimationFrame(tick);
+  }
+}
+
+/* Auto-init when DOM ready (called after DOMContentLoaded too, but safe to call standalone) */
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initHeroBg);
+} else {
+  initHeroBg();
 }

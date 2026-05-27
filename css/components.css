@@ -246,8 +246,8 @@
 
 .album-preview-thumb {
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: 130px;
+  height: 130px;
   border-radius: var(--r-md);
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -261,32 +261,39 @@
   object-fit: cover;
 }
 
+/* Fan arrangement centered in the visual area:
+   3 thumbs of 130px. Group center = container center.
+   Horizontal centers: 50%-90px, 50%, 50%+90px → avg = 50% ✓
+   Vertical marginTops: -60, -70, -65 → avg = -65px = -thumbH/2 ✓ */
 .album-preview-thumb:nth-child(1) {
-  top: 20%;  left: 10%;
-  transform: rotate(-8deg);
+  top: 50%; left: 50%;
+  margin-top: -60px; margin-left: -155px;
+  transform: rotate(-9deg);
   z-index: 3;
 }
 .album-preview-thumb:nth-child(2) {
-  top: 15%;  left: 30%;
+  top: 50%; left: 50%;
+  margin-top: -70px; margin-left: -65px;
   transform: rotate(2deg);
   z-index: 2;
 }
 .album-preview-thumb:nth-child(3) {
-  top: 30%;  left: 50%;
-  transform: rotate(-4deg);
+  top: 50%; left: 50%;
+  margin-top: -65px; margin-left: 25px;
+  transform: rotate(-5deg);
   z-index: 1;
 }
 
 .music-entry:hover .album-preview-thumb:nth-child(1) {
-  transform: rotate(-12deg) translateY(-6px);
+  transform: rotate(-13deg) translateY(-8px);
   box-shadow: var(--shadow-lg);
 }
 .music-entry:hover .album-preview-thumb:nth-child(2) {
-  transform: rotate(4deg) translateY(-10px);
+  transform: rotate(4deg) translateY(-12px);
   box-shadow: var(--shadow-lg);
 }
 .music-entry:hover .album-preview-thumb:nth-child(3) {
-  transform: rotate(-6deg) translateY(-4px);
+  transform: rotate(-7deg) translateY(-5px);
   box-shadow: var(--shadow-lg);
 }
 
