@@ -1,0 +1,49 @@
+{
+  "featured": [
+    {
+      "id": 1,
+      "title": "Project Title",
+      "description": "一句话描述这个项目解决了什么问题。",
+      "detail": "更详细的项目介绍，可以说明技术方案、核心挑战，以及你从中学到了什么。",
+      "tags": ["Python", "Tag2", "Tag3"],
+      "github": "#",
+      "demo": null,
+      "image": "assets/images/projects/project-1.jpg",
+      "year": "2025"
+    },
+    {
+      "id": 2,
+      "title": "Project Title",
+      "description": "一句话描述这个项目解决了什么问题。",
+      "detail": "更详细的项目介绍。",
+      "tags": ["MATLAB", "Tag2"],
+      "github": "#",
+      "demo": null,
+      "image": "assets/images/projects/project-2.jpg",
+      "year": "2024"
+    }
+  ],
+  "others": [
+    {
+      "title": "Project Title",
+      "description": "简短描述这个项目。",
+      "tags": ["Python"],
+      "github": "#",
+      "year": "2024"
+    },
+    {
+      "title": "Project Title",
+      "description": "简短描述这个项目。",
+      "tags": ["LaTeX"],
+      "github": "#",
+      "year": "2024"
+    },
+    {
+      "title": "Project Title",
+      "description": "简短描述这个项目。",
+      "tags": ["MATLAB"],
+      "github": "#",
+      "year": "2023"
+    }
+  ]
+}

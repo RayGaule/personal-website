@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "artist": "Arcade Fire",
+    "album": "The Suburbs",
+    "song_title": "Sprawl II (Mountains Beyond Mountains)",
+    "comment": "走出童年的郊区，走入连绵的都市丛林。",
+    "image": "materials/albums/images/1.jpg",
+    "audio": "materials/albums/songs/1.mp3"
+  },
+  {
+    "id": 2,
+    "artist": "相対性理論",
+    "album": "ハイファイ新書",
+    "song_title": "バーモント・キス",
+    "comment": "天使温暖地吻在我心间",
+    "image": "materials/albums/images/2.jpg",
+    "audio": "materials/albums/songs/2.mp3"
+  },
+  {
+    "id": 3,
+    "artist": "罗大佑",
+    "album": "爱人同志",
+    "song_title": "你的样子",
+    "comment": "聪明的孩子，提着易碎的灯笼",
+    "image": "materials/albums/images/3.png",
+    "audio": "materials/albums/songs/3.mp3"
+  },
+  {
+    "id": 4,
+    "artist": "새소년",
+    "album": "비적응",
+    "song_title": "심야행",
+    "comment": "深夜雪行",
+    "image": "materials/albums/images/4.jpg",
+    "audio": "materials/albums/songs/4.mp3"
+  },
+  {
+    "id": 5,
+    "artist": "Wilco",
+    "album": "Yankee Hotel Foxtrot",
+    "song_title": "I am trying to break your heart",
+    "comment": "昏黄的美国梦晚景",
+    "image": "materials/albums/images/5.jpg",
+    "audio": "materials/albums/songs/5.mp3"
+  },
+  {
+    "id": 6,
+    "artist": "Alison's Halo",
+    "album": "Eyedazzler",
+    "song_title": "Leech",
+    "comment": "沉醉在绵延的音墙里",
+    "image": "materials/albums/images/6.jpg",
+    "audio": "materials/albums/songs/6.mp3"
+  },
+  {
+    "id": 7,
+    "artist": "Grizzly Bear",
+    "album": "Shields",
+    "song_title": "Yet Again",
+    "comment": "没有尽头的追问，一种恳求",
+    "image": "materials/albums/images/7.jpg",
+    "audio": "materials/albums/songs/7.mp3"
+  },
+  {
+    "id": 8,
+    "artist": "Iglooghost",
+    "album": "Lei Line Eon",
+    "song_title": "Big Protector",
+    "comment": "属于新世纪的民乐",
+    "image": "materials/albums/images/8.jpg",
+    "audio": "materials/albums/songs/8.mp3"
+  },
+  {
+    "id": 9,
+    "artist": "Ariel Pink's Haunted Graffiti",
+    "album": "Before Today",
+    "song_title": "Round and Round",
+    "comment": "地下室里的迪斯科球灯",
+    "image": "materials/albums/images/9.jpg",
+    "audio": "materials/albums/songs/9.mp3"
+  },
+  {
+    "id": 10,
+    "artist": "Moses Sumney",
+    "album": "græ",
+    "song_title": "Me in 20 Years",
+    "comment": "二十年后又是什么样子呢？",
+    "image": "materials/albums/images/10.jpg",
+    "audio": "materials/albums/songs/10.mp3"
+  },
+  {
+    "id": 11,
+    "artist": "Grouper",
+    "album": "Dragging a Dead Deer Up a Hill",
+    "song_title": "Heavy Water / I'd Rather Be Sleeping",
+    "comment": "沉静的声音里藏着很多用语言说不清的东西。",
+    "image": "materials/albums/images/11.jpg",
+    "audio": "materials/albums/songs/11.mp3"
+  },
+  {
+    "id": 12,
+    "artist": "Sugar Plant",
+    "album": "dryfruit",
+    "song_title": "a rain discretion",
+    "comment": "阴雨天，一个人坐在窗前",
+    "image": "materials/albums/images/12.jpg",
+    "audio": "materials/albums/songs/12.mp3"
+  },
+  {
+    "id": 13,
+    "artist": "How to Dress Well",
+    "album": "The Anteroom",
+    "song_title": "Humans Disguised as Animals | Nonkilling 1",
+    "comment": "破碎的工业细噪，悬浮的现代人",
+    "image": "materials/albums/images/13.jpg",
+    "audio": "materials/albums/songs/13.mp3"
+  },
+  {
+    "id": 14,
+    "artist": "平沢進",
+    "album": "救済の技法",
+    "song_title": "TOWN-0 PHASE-5",
+    "comment": "师匠的铿锵之音",
+    "image": "materials/albums/images/14.jpg",
+    "audio": "materials/albums/songs/14.mp3"
+  },
+  {
+    "id": 15,
+    "artist": "溶けない名前",
+    "album": "タイムマシンが壊れる前に",
+    "song_title": "恍惚教室",
+    "comment": "恍惚间的教室，青春的回忆",
+    "image": "materials/albums/images/15.jpg",
+    "audio": "materials/albums/songs/15.mp3"
+  }
+]

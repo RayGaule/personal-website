@@ -1,0 +1,27 @@
+{
+  "name": {
+    "chinese": "赵容谦",
+    "english": "Ray Gaule"
+  },
+  "tagline": "I build things and listen to music.",
+  "about": [
+    "清华大学水木学院电子工程方向在读，对信号与系统里藏着的规律感兴趣。",
+    "写代码之外，音乐是我认识自己的另一种方式——从罗大佑到 Grouper，我在这些声音里找到了很多用公式说不清楚的东西。",
+    "这个页面是我的一个快照。如果你想聊聊技术或者音乐，随时欢迎。"
+  ],
+  "education": "Tsinghua University · Shuimu College · EE",
+  "avatar": "assets/images/avatar.jpg",
+  "skills": [
+    { "name": "Python",      "category": "language" },
+    { "name": "MATLAB",      "category": "language" },
+    { "name": "LaTeX",       "category": "tool" },
+    { "name": "Vibe Coding", "category": "philosophy" }
+  ],
+  "contact": {
+    "email": "zhaorq25@mails.tsinghua.edu.cn",
+    "github": "https://github.com/RayGaule",
+    "wechat": {
+      "qrcode": "assets/images/wechat-qr.png"
+    }
+  }
+}

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ray Gaule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/player.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav class="nav" role="navigation">
+  <div class="container nav__inner">
+    <a class="nav__logo" href="#top">Ray Gaule</a>
+    <ul class="nav__links" role="list">
+      <li><a class="nav__link" href="#about">About</a></li>
+      <li><a class="nav__link" href="#projects">Projects</a></li>
+      <li><a class="nav__link" href="#music">Music</a></li>
+      <li><a class="nav__link" href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="container hero__inner">
+
+    <!-- Left: text -->
+    <div class="hero__text">
+      <p class="hero__label">Personal Homepage</p>
+
+      <h1 class="hero__greeting">
+        <span class="hero__name-en" id="heroNameEn">Ray Gaule</span>
+        <span class="hero__name-zh" id="heroNameZh">赵容谦</span>
+      </h1>
+
+      <p class="hero__tagline" id="heroTagline">
+        I build things and listen to music.
+      </p>
+
+      <div class="hero__cta">
+        <!-- GitHub -->
+        <a id="heroGithub" href="#" class="btn btn--primary" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+          GitHub
+        </a>
+
+        <!-- Email: hover shows address, click copies -->
+        <button id="heroEmail" class="btn btn--ghost email-copy-btn"
+                data-email="" title="点击复制邮箱">
+          <svg class="icon" viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Email
+        </button>
+      </div>
+
+      <!-- Wave under CTA -->
+      <div class="wave-divider" aria-hidden="true"
+           style="justify-content:flex-start; margin-top:var(--s6);">
+        <div class="wave-divider__bar"></div>
+        <div class="wave-divider__bar"></div>
+        <div class="wave-divider__bar"></div>
+        <div class="wave-divider__bar"></div>
+        <div class="wave-divider__bar"></div>
+        <div class="wave-divider__bar"></div>
+        <div class="wave-divider__bar"></div>
+        <div class="wave-divider__bar"></div>
+        <div class="wave-divider__bar"></div>
+      </div>
+    </div>
+
+    <!-- Right: avatar + vinyl -->
+    <div class="hero__visual">
+      <div class="hero__avatar-wrap">
+        <img class="hero__avatar" id="heroAvatar" src="" alt="Ray Gaule">
+        <div class="hero__avatar-placeholder" id="heroInitials" style="display:none">RG</div>
+        <div class="hero__vinyl" aria-hidden="true">
+          <svg class="vinyl" viewBox="0 0 80 80">
+            <g class="vinyl__disc">
+              <circle cx="40" cy="40" r="38" fill="#1D1D1F"/>
+              <circle cx="40" cy="40" r="30" fill="#111"/>
+              <circle cx="40" cy="40" r="23" fill="#1D1D1F"/>
+              <circle cx="40" cy="40" r="16" fill="#111"/>
+              <circle cx="40" cy="40" r="9"  fill="#1D1D1F"/>
+              <circle cx="40" cy="40" r="4"  fill="#8B7355"/>
+              <circle cx="40" cy="40" r="1.5" fill="#444"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ABOUT  (includes Skills)
+══════════════════════════════════════ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about__grid">
+
+      <!-- Left: meta -->
+      <div class="about__meta reveal">
+        <div class="section-eyebrow">About</div>
+        <h2 class="section-title">Who I Am</h2>
+        <p class="about__edu" id="aboutEdu">Tsinghua University · Shuimu College · EE</p>
+
+        <!-- Tiny vinyl accent -->
+        <div style="margin-top:1.5rem; opacity:.15; width:48px;" aria-hidden="true">
+          <svg viewBox="0 0 80 80">
+            <g class="vinyl__disc">
+              <circle cx="40" cy="40" r="38" fill="#1D1D1F"/>
+              <circle cx="40" cy="40" r="26" fill="#111"/>
+              <circle cx="40" cy="40" r="16" fill="#1D1D1F"/>
+              <circle cx="40" cy="40" r="5"  fill="#8B7355"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right: text + skills -->
+      <div class="about__right">
+        <div class="about__text reveal" id="aboutText">
+          <!-- Paragraphs filled by JS -->
+        </div>
+
+        <!-- Skills integrated below text -->
+        <div class="about__skills reveal" id="aboutSkills">
+          <div class="about__skills-label">Skills</div>
+          <div class="skills__list" id="skillsList">
+            <!-- Tags filled by JS -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PROJECTS
+══════════════════════════════════════ -->
+<section class="section" id="projects" style="padding-top: var(--s7);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Projects</div>
+      <h2 class="section-title">Things I've Built</h2>
+      <p class="section-subtitle">项目列表待补充，以下为占位示例。</p>
+    </div>
+
+    <div class="projects__featured" id="projectsFeatured"></div>
+    <div class="projects__others"   id="projectsOthers"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MUSIC ENTRY
+══════════════════════════════════════ -->
+<section class="section" id="music">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Music</div>
+      <h2 class="section-title">What I Listen To</h2>
+    </div>
+
+    <a href="music.html" class="music-entry reveal" aria-label="查看音乐品味页面">
+      <div class="music-entry__content">
+        <div class="music-entry__label">Listening History</div>
+        <h3 class="music-entry__title">12 Albums<br>That Define Me</h3>
+        <p class="music-entry__desc">
+          从 Arcade Fire 到 Grouper，从罗大佑到 Sugar Plant——<br>
+          这些专辑是我的某种自我介绍。
+        </p>
+        <span class="btn btn--primary" style="align-self:flex-start">Explore →</span>
+      </div>
+      <div class="music-entry__visual">
+        <div class="album-previews" id="musicThumbs"></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONTACT
+══════════════════════════════════════ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Contact</div>
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-subtitle">如果你想聊聊技术、音乐，或者任何有意思的事情，欢迎联系。</p>
+    </div>
+
+    <div class="contact__links reveal">
+
+      <!-- GitHub -->
+      <a id="contactGithub" href="#" class="contact-link" target="_blank" rel="noopener">
+        <svg class="contact-link__icon icon" viewBox="0 0 24 24">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+        GitHub
+      </a>
+
+      <!-- Email (hover shows address, click copies) -->
+      <button id="contactEmail" class="contact-link email-copy-btn" data-email="">
+        <svg class="contact-link__icon icon" viewBox="0 0 24 24">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Email
+      </button>
+
+      <!-- WeChat -->
+      <button id="contactWechat" class="contact-link">
+        <svg class="contact-link__icon" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8.5 14.5c2.5 1.5 5.5 1.5 8 0"/>
+          <circle cx="9.5"  cy="11.5" r="1"/>
+          <circle cx="14.5" cy="11.5" r="1"/>
+          <path d="M21 11.5C21 7.36 16.97 4 12 4S3 7.36 3 11.5c0 2.32 1.12 4.38 2.88 5.77L5 21l3.64-1.82C9.7 19.7 10.82 20 12 20c4.97 0 9-3.36 9-8.5z"/>
+        </svg>
+        WeChat
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 Ray Gaule · 赵容谦 &nbsp;·&nbsp; Built with HTML / CSS / JS</p>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     WECHAT MODAL
+══════════════════════════════════════ -->
+<div class="modal-overlay" id="wechatModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h3 class="modal__title">WeChat</h3>
+    <p class="modal__sub">扫一扫加我微信</p>
+    <div class="modal__qr">
+      <img id="wechatQR" src="" alt="WeChat QR Code">
+    </div>
+    <button class="modal__close" id="wechatClose">关闭</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MINI PLAYER
+══════════════════════════════════════ -->
+<div id="player" class="player" aria-label="音乐播放器"></div>
+
+<script src="js/player.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

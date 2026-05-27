@@ -1,0 +1,481 @@
+/* ============================================================
+   player.css — Mini Music Player v2 (Disc + Visualizer)
+   ============================================================ */
+
+/* ── Container ───────────────────────────────────────────── */
+.player {
+  position: fixed;
+  bottom: var(--s6);
+  right:  var(--s6);
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* ── Collapsed pill ──────────────────────────────────────── */
+.player__pill {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: 6px var(--s4) 6px 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  user-select: none;
+  transition: box-shadow var(--t-fast), transform var(--t-fast);
+}
+
+.player__pill:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+/* Mini circular album art in pill */
+.player__pill-disc {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1px solid rgba(0,0,0,.08);
+  background: #222;
+  animation: disc-spin 10s linear infinite;
+  animation-play-state: paused;
+  position: relative;
+}
+
+.player--playing .player__pill-disc { animation-play-state: running; }
+
+.player__pill-disc img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+/* Tiny center hole overlay on pill disc */
+.player__pill-disc::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.05);
+  pointer-events: none;
+}
+
+/* EQ bars */
+.player__pill-eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+}
+
+.player__pill-eq-bar {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.player__pill-eq-bar:nth-child(1) { height: 8px;  animation: eq1 .80s ease-in-out infinite; }
+.player__pill-eq-bar:nth-child(2) { height: 14px; animation: eq2 .90s ease-in-out infinite; }
+.player__pill-eq-bar:nth-child(3) { height: 10px; animation: eq3 .70s ease-in-out infinite; }
+.player__pill-eq-bar:nth-child(4) { height: 6px;  animation: eq4 1.1s ease-in-out infinite; }
+
+.player:not(.player--playing) .player__pill-eq-bar { animation-play-state: paused; }
+
+@keyframes eq1 { 0%,100%{height:8px}  50%{height:14px} }
+@keyframes eq2 { 0%,100%{height:14px} 50%{height:6px}  }
+@keyframes eq3 { 0%,100%{height:10px} 50%{height:16px} }
+@keyframes eq4 { 0%,100%{height:6px}  50%{height:12px} }
+
+.player__pill-track {
+  font-size: .75rem;
+  color: var(--text-secondary);
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Expanded panel ──────────────────────────────────────── */
+.player__panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-xl);
+  width: 300px;
+  overflow: hidden;
+  margin-bottom: var(--s2);
+  transform-origin: bottom right;
+  animation: panel-open var(--t-spring) forwards;
+}
+
+@keyframes panel-open {
+  from { opacity: 0; transform: scale(.92) translateY(10px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0);    }
+}
+
+.player__panel.closing {
+  animation: panel-close var(--t-base) forwards;
+}
+
+@keyframes panel-close {
+  from { opacity: 1; transform: scale(1)   translateY(0);    }
+  to   { opacity: 0; transform: scale(.92) translateY(10px); }
+}
+
+/* ── Disc section (dark backdrop) ───────────────────────── */
+.player__disc-section {
+  position: relative;
+  background: #161412;
+  padding: var(--s5) 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s4);
+}
+
+/* Close button */
+.player__close {
+  position: absolute;
+  top: var(--s3); right: var(--s3);
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.10);
+  border: none;
+  color: rgba(255,255,255,.60);
+  display: flex;
+  align-items: center; justify-content: center;
+  opacity: 0;
+  transition: opacity var(--t-fast), background var(--t-fast), color var(--t-fast);
+  z-index: 5;
+  cursor: pointer;
+}
+
+.player__disc-section:hover .player__close { opacity: 1; }
+.player__close:hover { background: rgba(255,255,255,.22); color: white; }
+
+/* ── Spinning disc ───────────────────────────────────────── */
+.player__disc {
+  width: 156px; height: 156px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.04),
+    0 8px 40px rgba(0,0,0,.65),
+    0 2px 8px  rgba(0,0,0,.40);
+}
+
+/* Burst animation on track change */
+@keyframes disc-burst {
+  0%   { transform: scale(1); }
+  28%  { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+
+.player__disc.burst { animation: disc-burst 360ms cubic-bezier(0.16,1,0.3,1); }
+
+/* Rotating wrapper — only this part spins */
+.player__disc-inner {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  animation: disc-spin 10s linear infinite;
+  animation-play-state: paused;
+}
+
+.player--playing .player__disc-inner { animation-play-state: running; }
+
+@keyframes disc-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Album art fills disc */
+.player__disc-cover {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #222;
+}
+
+.player__disc-cover img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: opacity 280ms ease;
+}
+
+/* Subtle vinyl groove rings */
+.player__disc-grooves {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+    transparent 25%,
+    rgba(0,0,0,.12) 27%, transparent 28%,
+    rgba(0,0,0,.08) 35%, transparent 36%,
+    rgba(0,0,0,.07) 43%, transparent 44%,
+    rgba(0,0,0,.05) 51%, transparent 52%,
+    rgba(0,0,0,.04) 59%, transparent 60%,
+    rgba(0,0,0,.03) 67%, transparent 68%
+  );
+  pointer-events: none;
+}
+
+/* Center spindle hole */
+.player__disc-hole {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #161412;
+  box-shadow: 0 0 0 1.5px rgba(255,255,255,.06) inset,
+              0 0 8px rgba(0,0,0,.5);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── ScalesMixer canvas ───────────────────────────────────── */
+.player__viz-canvas {
+  display: block;
+  width: 100%;
+  height: 64px;
+  background: #161412;   /* matches disc section */
+}
+
+/* ── Track info (light section) ──────────────────────────── */
+.player__info {
+  padding: var(--s4) var(--s5) 0;
+  overflow: hidden;
+}
+
+/* Track change slide animations */
+@keyframes ti-in-next {
+  from { opacity: 0; transform: translateX(22px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+@keyframes ti-out-next {
+  from { opacity: 1; transform: translateX(0);      }
+  to   { opacity: 0; transform: translateX(-22px);  }
+}
+@keyframes ti-in-prev {
+  from { opacity: 0; transform: translateX(-22px); }
+  to   { opacity: 1; transform: translateX(0);      }
+}
+@keyframes ti-out-prev {
+  from { opacity: 1; transform: translateX(0);      }
+  to   { opacity: 0; transform: translateX(22px);   }
+}
+
+.player__info.ti-out-next { animation: ti-out-next 180ms ease         forwards; }
+.player__info.ti-in-next  { animation: ti-in-next  270ms cubic-bezier(0.16,1,0.3,1) forwards; }
+.player__info.ti-out-prev { animation: ti-out-prev 180ms ease         forwards; }
+.player__info.ti-in-prev  { animation: ti-in-prev  270ms cubic-bezier(0.16,1,0.3,1) forwards; }
+
+.player__song {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player__artist {
+  font-size: .78rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Progress bar ────────────────────────────────────────── */
+.player__progress-wrap {
+  padding: var(--s3) var(--s5) 0;
+}
+
+.player__progress {
+  width: 100%; height: 20px;
+  cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+  background: transparent;
+  display: block;
+}
+
+.player__progress::-webkit-slider-runnable-track {
+  height: 3px; border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--text-primary) var(--progress, 0%),
+    var(--bg-secondary) var(--progress, 0%)
+  );
+}
+
+.player__progress::-webkit-slider-thumb {
+  appearance: none; -webkit-appearance: none;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  cursor: pointer; margin-top: -5.5px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+  transition: transform var(--t-fast);
+}
+
+.player__progress:hover::-webkit-slider-thumb { transform: scale(1.2); }
+
+.player__progress::-moz-range-track {
+  height: 3px; border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--text-primary) var(--progress, 0%),
+    var(--bg-secondary) var(--progress, 0%)
+  );
+}
+
+.player__progress::-moz-range-thumb {
+  width: 14px; height: 14px;
+  border: none; border-radius: 50%;
+  background: var(--text-primary); cursor: pointer;
+}
+
+.player__time {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--s5) var(--s1);
+  font-size: .66rem;
+  color: var(--text-tertiary);
+}
+
+/* ── Controls row ────────────────────────────────────────── */
+.player__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s3);
+  padding: var(--s2) var(--s5) var(--s3);
+}
+
+.player__btn {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center; justify-content: center;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: color var(--t-fast), background var(--t-fast), transform var(--t-fast);
+  border: none; cursor: pointer; background: transparent;
+  position: relative;
+}
+
+.player__btn:hover  { color: var(--text-primary); background: var(--bg-secondary); }
+.player__btn:active { transform: scale(.88); }
+.player__btn svg    { width: 14px; height: 14px; }
+
+.player__btn--play {
+  width: 44px; height: 44px;
+  background: var(--text-primary);
+  color: var(--bg-elevated);
+}
+
+.player__btn--play:hover { background: #3D3D3F; color: var(--bg-elevated); }
+.player__btn--play svg   { width: 17px; height: 17px; }
+
+/* Active indicator for shuffle / loop */
+.player__btn--active             { color: var(--accent) !important; }
+.player__btn--active:hover       { background: rgba(139,115,85,.12) !important; }
+
+/* Loop-one indicator dot */
+.player__loop-badge {
+  position: absolute;
+  bottom: 2px; right: 2px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+}
+
+/* ── Volume ──────────────────────────────────────────────── */
+.player__volume-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: 0 var(--s5) var(--s5);
+}
+
+.player__vol-btn {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  display: flex;
+  align-items: center; justify-content: center;
+  color: var(--text-tertiary);
+  cursor: pointer; border: none; background: transparent;
+  transition: color var(--t-fast); padding: 0;
+}
+
+.player__vol-btn:hover { color: var(--text-secondary); }
+.player__vol-btn svg   { width: 16px; height: 16px; }
+
+.player__volume {
+  flex: 1; height: 16px;
+  cursor: pointer;
+  appearance: none; -webkit-appearance: none;
+  background: transparent;
+}
+
+.player__volume::-webkit-slider-runnable-track {
+  height: 3px; border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--text-secondary) var(--vol, 100%),
+    var(--bg-secondary)   var(--vol, 100%)
+  );
+}
+
+.player__volume::-webkit-slider-thumb {
+  appearance: none; -webkit-appearance: none;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--text-secondary);
+  cursor: pointer; margin-top: -4.5px;
+  transition: transform var(--t-fast);
+}
+
+.player__volume:hover::-webkit-slider-thumb { transform: scale(1.2); }
+
+.player__volume::-moz-range-track {
+  height: 3px; border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--text-secondary) var(--vol, 100%),
+    var(--bg-secondary)   var(--vol, 100%)
+  );
+}
+
+.player__volume::-moz-range-thumb {
+  width: 12px; height: 12px;
+  border: none; border-radius: 50%;
+  background: var(--text-secondary); cursor: pointer;
+}
+
+/* ── Hidden panel ─────────────────────────────────────────── */
+.player__panel[hidden] { display: none; }
+
+/* ── Homepage hero vinyl spin ────────────────────────────── */
+.vinyl__disc {
+  animation: spin-slow 8s linear infinite;
+  animation-play-state: paused;
+  transform-origin: 50% 50%;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

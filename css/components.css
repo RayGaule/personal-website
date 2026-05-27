@@ -1,0 +1,324 @@
+/* ============================================================
+   components.css — Reusable UI Components
+   ============================================================ */
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: 10px var(--s5);
+  border-radius: var(--r-full);
+  font-size: .875rem;
+  font-weight: 500;
+  transition: background var(--t-fast), color var(--t-fast),
+              box-shadow var(--t-fast), transform var(--t-fast);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn:active { transform: scale(.97); }
+
+.btn--primary {
+  background: var(--text-primary);
+  color: var(--bg);
+}
+.btn--primary:hover {
+  background: #3D3D3F;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.btn--ghost:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.btn--icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* ── Tags / Skill Pills ──────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: var(--s1) var(--s3);
+  border-radius: var(--r-full);
+  font-size: .78rem;
+  font-weight: 500;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  letter-spacing: .01em;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.tag:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-color: transparent;
+}
+
+/* ── Project Cards ───────────────────────────────────────── */
+.project-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: box-shadow var(--t-base), transform var(--t-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.project-card__image {
+  aspect-ratio: 16/9;
+  background: var(--bg-secondary);
+  overflow: hidden;
+  position: relative;
+}
+
+.project-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-slow);
+}
+
+.project-card:hover .project-card__image img {
+  transform: scale(1.04);
+}
+
+/* Placeholder when no image */
+.project-card__image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--border) 100%);
+  font-size: 2rem;
+  color: var(--text-tertiary);
+}
+
+.project-card__body {
+  padding: var(--s5);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card__year {
+  font-size: .72rem;
+  color: var(--text-tertiary);
+  margin-bottom: var(--s2);
+  font-weight: 500;
+  letter-spacing: .05em;
+}
+
+.project-card__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -.015em;
+  margin-bottom: var(--s2);
+  color: var(--text-primary);
+}
+
+.project-card__desc {
+  font-size: .875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: var(--s4);
+}
+
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1);
+  margin-bottom: var(--s4);
+}
+
+.project-card__links {
+  display: flex;
+  gap: var(--s3);
+  margin-top: auto;
+}
+
+/* ── Project List Item (others) ──────────────────────────── */
+.project-item {
+  display: flex;
+  align-items: center;
+  padding: var(--s4) 0;
+  border-bottom: 1px solid var(--border-light);
+  gap: var(--s4);
+  transition: background var(--t-fast);
+  cursor: pointer;
+}
+
+.project-item:last-child { border-bottom: none; }
+
+.project-item__year {
+  font-size: .72rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  letter-spacing: .05em;
+  min-width: 40px;
+  text-align: right;
+}
+
+.project-item__title {
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  min-width: 160px;
+}
+
+.project-item__desc {
+  font-size: .85rem;
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.project-item__tags {
+  display: flex;
+  gap: var(--s1);
+}
+
+.project-item__arrow {
+  color: var(--text-tertiary);
+  transition: transform var(--t-fast), color var(--t-fast);
+  font-size: 1rem;
+}
+
+.project-item:hover .project-item__arrow {
+  transform: translateX(3px);
+  color: var(--text-primary);
+}
+
+/* ── Contact Link ────────────────────────────────────────── */
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3) var(--s5);
+  border-radius: var(--r-full);
+  font-size: .875rem;
+  font-weight: 500;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: background var(--t-fast), color var(--t-fast),
+              box-shadow var(--t-fast), transform var(--t-fast);
+}
+
+.contact-link:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.contact-link__icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ── Mini Album Previews (music entry section) ───────────── */
+.album-previews {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+}
+
+.album-preview-thumb {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--bg-secondary);
+  transition: transform var(--t-slow), box-shadow var(--t-slow);
+}
+
+.album-preview-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.album-preview-thumb:nth-child(1) {
+  top: 20%;  left: 10%;
+  transform: rotate(-8deg);
+  z-index: 3;
+}
+.album-preview-thumb:nth-child(2) {
+  top: 15%;  left: 30%;
+  transform: rotate(2deg);
+  z-index: 2;
+}
+.album-preview-thumb:nth-child(3) {
+  top: 30%;  left: 50%;
+  transform: rotate(-4deg);
+  z-index: 1;
+}
+
+.music-entry:hover .album-preview-thumb:nth-child(1) {
+  transform: rotate(-12deg) translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+.music-entry:hover .album-preview-thumb:nth-child(2) {
+  transform: rotate(4deg) translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+.music-entry:hover .album-preview-thumb:nth-child(3) {
+  transform: rotate(-6deg) translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Vinyl SVG Animation ─────────────────────────────────── */
+.vinyl {
+  width: 100%;
+  height: 100%;
+}
+
+.vinyl__disc {
+  animation: spin-slow 8s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.vinyl__disc.paused {
+  animation-play-state: paused;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Icon SVG helpers ────────────────────────────────────── */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 1.75;
+  stroke: currentColor;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+}
